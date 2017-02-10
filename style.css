@@ -17,6 +17,10 @@
 font-family: ‘Name of Font’;
 }*/
 
+ul {
+  list-style: circle;
+}
+
 li {
   color: #553D33;
   font-size: 1em;
