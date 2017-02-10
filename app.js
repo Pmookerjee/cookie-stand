@@ -3,6 +3,7 @@ var PikePlace = {
   max: 88,
   avg: 5.2,
   cookiesPerHr:[],
+  totalCookies: 0,
   getRandom: function(min, max){
     min = this.min;
     max = this.max;
@@ -11,7 +12,7 @@ var PikePlace = {
   getCookiesPerHr: function(num) {
     var cookies = num * this.avg;
     this.cookiesPerHr.push(cookies.toFixed(0));
-     console.log('cookies per hour is ' + this.cookiesPerHr);
+    console.log('cookies per hour is ' + this.cookiesPerHr);
   },
   renderData: function(hour, index) {
     var header = document.getElementById('location');
@@ -22,10 +23,20 @@ var PikePlace = {
     newLi.appendChild(newLiText);
     newUl.appendChild(newLi);
     header.appendChild(newUl);
-    // 2. Create a UL element
-    // 3. Create and populate an LI element for each of the data points that you want to render
-    // 4. Append the LI to the UL
-    // 5. Append the UL to the element that you stored in step 1
+    if(index === 7) {
+      var total = 'Total: ' + this.totalCookies + ' cookies';
+      var header = document.getElementById('location');
+      var newUl = document.createElement('ul');
+      var newLi = document.createElement('li');
+      var newLiText = document.createTextNode(total);
+      newLi.appendChild(newLiText);
+      newLi.appendChild(newLiText);
+      newUl.appendChild(newLi);
+      header.appendChild(newUl);
+    }
+  },
+  addToTotal(index){
+    this.totalCookies += +this.cookiesPerHr[index];
   }
 };
 
@@ -34,6 +45,7 @@ for(var i = 0; i < 8; i++){
   var randomNum = PikePlace.getRandom();
   console.log(randomNum);
   PikePlace.getCookiesPerHr(randomNum);
+  PikePlace.addToTotal(i);
   PikePlace.renderData(hour[i], i);
 }
 
