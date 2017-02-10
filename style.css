@@ -1,6 +1,11 @@
 #location {
-  color: green;
+  color: #CD724D;
+  font-size: 1.5em;
 
+}
+
+.main {
+  background-color: #FFE4DA;
 }
 
 @font-face: {
@@ -8,6 +13,63 @@
  src: url (address);
 }
 
-p {
+/*p {
 font-family: ‘Name of Font’;
+}*/
+
+li {
+  color: #553D33;
+  font-size: 1em;
 }
+
+/*p {
+	margin: 0.5em 0;
+	}*/
+p {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.color-table {
+	margin: 2em 2em 5em;
+	border-collapse:collapse;
+	border:none;
+	border-spacing:0;
+	font-size:100%;
+	}
+.color-table th {
+	padding: 0 1em 0 0;
+	text-align: right;
+	vertical-align: middle;
+	font-size: 100%;
+	font-weight: normal;
+	border: none;
+	}
+.color-table td.sample {
+	width:6em; height:6em;
+	padding: 10px;
+	text-align:center;
+	vertical-align:middle;
+	font-size:90%;
+	border: 1px solid white;
+	white-space:nowrap;
+	}
+.color-table td.sample-0 {
+	width:18em;
+	}
+.color-table.small td.sample {
+	width:3em; height:3em;
+	padding:0;
+	border:none;
+	}
+.color-table.small td.sample-0 {
+	width:9em;
+	}
+.color-table .white { margin-bottom:0.2em; color:white }
+.color-table .black { margin-top:0.2em; color:black }
+
+.primary-1 { background-color: #D6BBB1 }
+.primary-2 { background-color: #FFE4DA }
+.primary-0 { background-color: #CD724D }
+.primary-3 { background-color: #553D33 }
+.primary-4 { background-color: #702000 }
