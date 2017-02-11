@@ -23,6 +23,8 @@ var PikePlace = {
     newLi.appendChild(newLiText);
     newUl.appendChild(newLi);
     header.appendChild(newUl);
+
+    //If we have just computed our last hour, render the total number of cookies
     if(index === 7) {
       var total = 'Total: ' + this.totalCookies + ' cookies';
       var header = document.getElementById('location');
@@ -40,6 +42,7 @@ var PikePlace = {
   }
 };
 
+//Put an array in here and another loop for the location names....
 for(var i = 0; i < 8; i++){
   var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
   var randomNum = PikePlace.getRandom();
