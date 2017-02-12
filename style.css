@@ -19,6 +19,13 @@ li {
   font-size: 1em;
 }
 
+#styleguide_box {
+    width: 200px;
+    border: 5px solid #702000;
+    background-color: #D6BBB1;
+    padding: 25px;
+}
+
 #styleguide_title {
   font-family: 'Georgia' serif;
   align-content: center;
