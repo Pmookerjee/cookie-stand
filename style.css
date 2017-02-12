@@ -1,23 +1,13 @@
-h1 {
-  color: #CD724D;
-  font-size: 1em;
-
-}
 
 .main {
   background-color: #FFE4DA;
 }
 
 
-
 body {
- font-family: 'Lato', sans-serif;
- src: url ('https://fonts.googleapis.com/css?family=Lato');
+ align-content: left;
 }
 
-/*p {
-font-family: ‘Name of Font’;
-}*/
 
 ul {
   list-style: circle;
@@ -25,15 +15,42 @@ ul {
 
 li {
   color: #553D33;
+  font-family: 'Arial';
   font-size: 1em;
 }
 
-/*p {
-	margin: 0.5em 0;
-	}*/
+#styleguide_title {
+  font-family: 'Georgia' serif;
+  align-content: center;
+  color: black;
+}
+
+#styleguide_headers {
+  font-family: 'Georgia' serif;
+  color: #CD724D;
+}
+
+#styleguide_highlights {
+  @font-family: 'Lato', sans-serif;
+  src: url ('https://fonts.googleapis.com/css?family=Lato');
+  color: #702000;
+}
+
 p {
-  font-size: 1.5em;
-  text-align: center;
+  color: #553D33;
+  font-family: 'Arial' sans-serif;
+  font-size: 1em;
+  text-align: left;
+}
+
+span {
+  color: black strong;
+}
+
+#swatchDescription {
+  font-size: 1em;
+  align-content: center;
+  font-family: 'Arial' sans-serif;
 }
 
 .color-table {
