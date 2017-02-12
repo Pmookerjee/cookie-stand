@@ -266,40 +266,40 @@ var Alki = {
 //also, add beginning and endvalue variables
 //var locationName = ['PikePlace', 'SeaTac', 'SouthCenter', 'BellevueSquare', 'Alki'];
 
-  var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-  var firstHour = 0
-  var lastHour = 7;
-  for(var i = firstHour; i <= lastHour; i++){
-    var randomNum = PikePlace.getRandom();
-    PikePlace.getCookiesPerHr(randomNum);
-    PikePlace.addToTotal(i);
-    PikePlace.renderData(hour[i], i);
-  }
+var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+var firstHour = 0
+var lastHour = 7;
+for(var i = firstHour; i <= lastHour; i++){
+  var randomNum = PikePlace.getRandom();
+  PikePlace.getCookiesPerHr(randomNum);
+  PikePlace.addToTotal(i);
+  PikePlace.renderData(hour[i], i);
+}
 
-  for(var i = firstHour; i <= lastHour; i++){
-    var randomNum = SeaTac.getRandom();
-    SeaTac.getCookiesPerHr(randomNum);
-    SeaTac.addToTotal(i);
-    SeaTac.renderData(hour[i], i);
-  }
+for(var i = firstHour; i <= lastHour; i++){
+  var randomNum = SeaTac.getRandom();
+  SeaTac.getCookiesPerHr(randomNum);
+  SeaTac.addToTotal(i);
+  SeaTac.renderData(hour[i], i);
+}
 
-  for(var i = firstHour; i <=lastHour; i++){
-    var randomNum = SouthCenter.getRandom();
-    SouthCenter.getCookiesPerHr(randomNum);
-    SouthCenter.addToTotal(i);
-    SouthCenter.renderData(hour[i], i);
-  }
+for(var i = firstHour; i <=lastHour; i++){
+  var randomNum = SouthCenter.getRandom();
+  SouthCenter.getCookiesPerHr(randomNum);
+  SouthCenter.addToTotal(i);
+  SouthCenter.renderData(hour[i], i);
+}
 
-  for(var i = firstHour; i <= lastHour; i++){
-    var randomNum = BellevueSquare.getRandom();
-    BellevueSquare.getCookiesPerHr(randomNum);
-    BellevueSquare.addToTotal(i);
-    BellevueSquare.renderData(hour[i], i);
-  }
+for(var i = firstHour; i <= lastHour; i++){
+  var randomNum = BellevueSquare.getRandom();
+  BellevueSquare.getCookiesPerHr(randomNum);
+  BellevueSquare.addToTotal(i);
+  BellevueSquare.renderData(hour[i], i);
+}
 
-  for(var i = firstHour; i <= lastHour; i++){
-    var randomNum = Alki.getRandom();
-    Alki.getCookiesPerHr(randomNum);
-    Alki.addToTotal(i);
-    Alki.renderData(hour[i], i);
-  }
+for(var i = firstHour; i <= lastHour; i++){
+  var randomNum = Alki.getRandom();
+  Alki.getCookiesPerHr(randomNum);
+  Alki.addToTotal(i);
+  Alki.renderData(hour[i], i);
+}
