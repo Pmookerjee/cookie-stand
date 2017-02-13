@@ -52,10 +52,13 @@ var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
 var firstHour = 0
 var lastHour = 7;
 var PikePlace = new Location(17, 88, 5.2, 'PikePlace');
+var store = [PikePlace];
 
-for(var i = firstHour; i <= lastHour; i++){
-  var randomNum = PikePlace.getRandom();
-  PikePlace.getCookiesPerHr(randomNum);
-  PikePlace.addToTotal(i);
-  PikePlace.renderData(hour[i], i);
+for (var j=0; j<store.length; j++){
+  for(var i = firstHour; i <= lastHour; i++){
+    var randomNum = store[j].getRandom();
+    store[j].getCookiesPerHr(randomNum);
+    store[j].addToTotal(i);
+    store[j].renderData(hour[i], i);
+  }
 }
