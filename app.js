@@ -16,7 +16,8 @@ function Location(min, max, avg, storeId) {
     this.cookiesPerHr.push(cookies.toFixed(0));
     console.log('cookies per hour is ' + this.cookiesPerHr);
   };
-  this.renderData = function(hour, index) {
+  this.renderTableHeader = function(){};
+  this.renderTableBody = function(hour, index) {
     var header = document.getElementById(this.storeId);
     var newUl = document.createElement('ul');
     var newLi = document.createElement('li');
@@ -39,6 +40,7 @@ function Location(min, max, avg, storeId) {
       header.appendChild(newUl);
     }
   };
+  this.renderTableFooter = function(){};
   this.addToTotal = function(index){
     this.totalCookies += +this.cookiesPerHr[index];
   };
