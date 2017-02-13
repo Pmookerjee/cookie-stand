@@ -1,4 +1,5 @@
 var headers = ['      ','10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
+//Totals holds all the cookiesPerHr arrays for every store
 var totals = [];
 
 //Initialize the Location objects...
@@ -11,45 +12,28 @@ var Alki = new Location('Alki', 3, 24, 2.6);
 //Store the objects in an array
 var store = [PikePlace, SeaTac, Southcenter, BellevueSquare, Alki];
 
-//Draw the table header once
-renderTableHeader(headers);
+//Run all the things...
+(function runTheApp() {
 
-for(var j=0; j<store.length; j++){
-  for (var i=0; i<headers.length-1; i++){
-    var randomNum = store[j].getRandom();
-    store[j].getCookiesPerHr(randomNum);
-    store[j].addToTotal(i);
+  //First draw the table header once
+  renderTableHeader(headers);
 
-  }
-  //Store the totals for all stores in a 2d array
-  totals[j] = store[j].cookiesPerHr;
-  store[j].renderTableBody();
-}
+  //Iterate though all the stores, get the total cookies per hour
+  for(var j=0; j<store.length; j++){
+    for (var i=0; i<headers.length-1; i++){
+      var randomNum = store[j].getRandom();
+      store[j].getCookiesPerHr(randomNum);
+      store[j].addToTotal(i);
 
-renderTotals(totals);
-
-function renderTotals(t) {
-  var tbody = document.getElementById('table_body');
-  var newTr = document.createElement('tr');
-  var newTd = document.createElement('td');
-  newTd.setAttribute('id', 'totals');
-  var content = document.createTextNode('Totals');
-  newTd.appendChild(content);
-  newTr.appendChild(newTd);
-  tbody.appendChild(newTr);
-  for(var i=0; i<headers.length-1; i++){
-    var total = 0;
-    for(var j=0; j<store.length; j++){
-      total += +t[j][i];
     }
-    var newTd = document.createElement('td');
-    newTd.setAttribute('id', 'totals');
-    var cookieData = document.createTextNode(total);
-    newTd.appendChild(cookieData);
-    newTr.appendChild(newTd);
-    tbody.appendChild(newTr);
+    //Store the totals for all stores in a 2d array
+    totals[j] = store[j].cookiesPerHr;
+    //Draw the table
+    store[j].renderTableBody();
   }
-}
+  //Draw the totals per hour
+  renderTableFooter(totals);
+})();
 
 function Location(name, min, max, avg) {
   this.name = name;
@@ -62,6 +46,7 @@ function Location(name, min, max, avg) {
   this.getRandom = function(){
     return Math.round(Math.random() * (this.max - this.min) + this.min);
   };
+
   this.getCookiesPerHr = function(num) {
     var cookies = num * this.avg;
     this.cookiesPerHr.push(cookies.toFixed(0));
@@ -84,7 +69,7 @@ function Location(name, min, max, avg) {
       tbody.appendChild(newTr);
     }
   };
-  this.renderTableFooter = function(){};
+
   this.addToTotal = function(index){
     this.totalCookies += +this.cookiesPerHr[index];
   };
@@ -99,3 +84,29 @@ function renderTableHeader(headerNames){
     header.appendChild(newTh);
   }
 };
+
+function renderTableFooter(t) {
+  var tbody = document.getElementById('table_body');
+  var newTr = document.createElement('tr');
+  var newTd = document.createElement('td');
+  newTd.setAttribute('id', 'totals');
+  var content = document.createTextNode('Totals');
+  newTd.appendChild(content);
+  newTr.appendChild(newTd);
+  tbody.appendChild(newTr);
+
+  //Go by column to get the cookie totals for each hour
+  for(var i=0; i<headers.length-1; i++){
+    var total = 0;
+    for(var j=0; j<store.length; j++){
+      total += +t[j][i];
+    }
+
+    var newTd = document.createElement('td');
+    newTd.setAttribute('id', 'totals');
+    var cookieData = document.createTextNode(total);
+    newTd.appendChild(cookieData);
+    newTr.appendChild(newTd);
+    tbody.appendChild(newTr);
+  }
+}

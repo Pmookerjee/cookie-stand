@@ -7,7 +7,7 @@ h1 {
 
 img {
   padding: 2em;
-  margin: .5em 28em auto
+  margin: .5em 28em auto;
 }
 
 .main {
@@ -46,10 +46,6 @@ table {
 
 th {
   border-bottom: 2px solid #702000
-}
-
-tr.even {
-  background-color: #FFE4DA;
 }
 
 ul {
