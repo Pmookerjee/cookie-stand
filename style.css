@@ -1,0 +1,112 @@
+
+h1 {
+  font-family: 'Georgia' serif;
+  color: #CD724D;
+  font-size: 1.2em;
+}
+
+.main {
+  background-color: #FFE4DA;
+}
+
+
+body {
+  align-content: left;
+}
+
+
+ul {
+  list-style: circle;
+}
+
+li {
+  color: #553D33;
+  font-family: 'Arial' sans-serif;;
+  font-size: .8em;
+}
+
+#styleguide_box {
+  width: 200px;
+  border: 5px solid #702000;
+  background-color: #D6BBB1;
+  padding: 25px;
+}
+
+#styleguide_title {
+  font-family: 'Georgia' serif;
+  align-content: center;
+  color: black;
+}
+
+#styleguide_headers {
+  font-family: 'Georgia' serif;
+  color: #CD724D;
+}
+
+#styleguide_highlights {
+  @font-family: 'Lato', sans-serif;
+  src: url ('https://fonts.googleapis.com/css?family=Lato');
+  color: #702000;
+}
+
+p {
+  color: #553D33;
+  font-family: 'Arial' sans-serif;
+  font-size: 1em;
+  text-align: left;
+}
+
+span {
+  color: black strong;
+}
+
+#swatchDescription {
+  font-size: 1em;
+  align-content: center;
+  font-family: 'Arial' sans-serif;
+}
+
+.color-table {
+  margin: 2em 2em 5em;
+  align-self: center;
+  border-collapse:collapse;
+  border:none;
+  border-spacing:0;
+  font-size:100%;
+}
+.color-table th {
+  padding: 0 1em 0 0;
+  text-align: right;
+  vertical-align: middle;
+  font-size: 100%;
+  font-weight: normal;
+  border: none;
+}
+.color-table td.sample {
+  width:6em; height:6em;
+  padding: 10px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:90%;
+  border: 1px solid white;
+  white-space:nowrap;
+}
+.color-table td.sample-0 {
+  width:18em;
+}
+.color-table.small td.sample {
+  width:3em; height:3em;
+  padding:0;
+  border:none;
+}
+.color-table.small td.sample-0 {
+  width:9em;
+}
+.color-table .white { margin-bottom:0.2em; color:white }
+.color-table .black { margin-top:0.2em; color:black }
+
+.primary-1 { background-color: #D6BBB1 }
+.primary-2 { background-color: #FFE4DA }
+.primary-0 { background-color: #CD724D }
+.primary-3 { background-color: #553D33 }
+.primary-4 { background-color: #702000 }
