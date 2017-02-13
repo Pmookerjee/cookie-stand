@@ -9,6 +9,7 @@ function Location(name, min, max, avg, storeId) {
   this.storeId = storeId;
   this.cookiesPerHr = [];
   this.totalCookies = 0;
+
   this.getRandom = function(){
     return Math.round(Math.random() * (this.max - this.min) + this.min);
   };
@@ -27,13 +28,22 @@ function Location(name, min, max, avg, storeId) {
       }
   };
   this.renderTableBody = function() {
-    var tbody = document.getElementById('table_body');
-    var newTr = document.createElement('tr');
-    var newTd = document.createElement('td');
-    var content = document.createTextNode(this.name);
-    newTd.appendChild(content);
-    newTr.appendChild(newTd);
-    tbody.appendChild(newTr);
+    //check if location name has already been displayed in table row
+      var tbody = document.getElementById('table_body');
+      var newTr = document.createElement('tr');
+      var newTd = document.createElement('td');
+      var content = document.createTextNode(this.name);
+      newTd.appendChild(content);
+      newTr.appendChild(newTd);
+      tbody.appendChild(newTr);
+      for(var i=0; i<this.cookiesPerHr.length; i++){
+        var newTd = document.createElement('td');
+        var cookieData = document.createTextNode(this.cookiesPerHr[i]);
+        newTd.appendChild(cookieData);
+        newTr.appendChild(newTd);
+        tbody.appendChild(newTr);
+      }
+
 
 
     // newLi.appendChild(newLiText);
@@ -68,8 +78,13 @@ var firstHour = 0
 var lastHour = 7;
 var PikePlace = new Location('Pike Place', 17, 88, 5.2, 'PikePlace');
 var store = [PikePlace];
-var randomNum = PikePlace.getRandom();
-PikePlace.getCookiesPerHr(randomNum);
+
+
+for (var i=0; i<8; i++){
+  var randomNum = PikePlace.getRandom();
+  PikePlace.getCookiesPerHr(randomNum);
+  PikePlace.addToTotal(i);
+}
 PikePlace.renderTableHeader(headers);
 PikePlace.renderTableBody();
 
