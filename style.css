@@ -9,11 +9,23 @@ h1 {
   background-color: #FFE4DA;
 }
 
+#page_title {
+  color: black;
+  align-content: center;
+  font-family: 'Georgia' serif;
+  font-size: 2em;
+}
+
 
 body {
   align-content: left;
 }
 
+table {
+  border: 5px solid #702000;
+  background-color: #D6BBB1;
+  padding: 5px;
+}
 
 ul {
   list-style: circle;

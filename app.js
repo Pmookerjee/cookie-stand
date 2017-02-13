@@ -16,7 +16,16 @@ function Location(min, max, avg, storeId) {
     this.cookiesPerHr.push(cookies.toFixed(0));
     console.log('cookies per hour is ' + this.cookiesPerHr);
   };
-  this.renderTableHeader = function(){};
+  this.renderTableHeader = function(headerNames){
+    var header = document.getElementById('table_header');
+
+      for (var i=0; i<headerNames.length; i++){
+        var newTh = document.createElement('th');
+        var headerName = document.createTextNode(headerNames[i]);
+        newTh.appendChild(headerName);
+        header.appendChild(newTh);
+      }
+  };
   this.renderTableBody = function(hour, index) {
     var header = document.getElementById(this.storeId);
     var newUl = document.createElement('ul');
@@ -50,17 +59,18 @@ function Location(min, max, avg, storeId) {
 //also, add beginning and endvalue variables
 //var locationName = ['PikePlace', 'SeaTac', 'SouthCenter', 'BellevueSquare', 'Alki'];
 
-var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+var headers = ['      ', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
 var firstHour = 0
 var lastHour = 7;
 var PikePlace = new Location(17, 88, 5.2, 'PikePlace');
 var store = [PikePlace];
+PikePlace.renderTableHeader(headers);
 
-for (var j=0; j<store.length; j++){
-  for(var i = firstHour; i <= lastHour; i++){
-    var randomNum = store[j].getRandom();
-    store[j].getCookiesPerHr(randomNum);
-    store[j].addToTotal(i);
-    store[j].renderData(hour[i], i);
-  }
-}
+// for (var j=0; j<store.length; j++){
+//   for(var i = firstHour; i <= lastHour; i++){
+//     var randomNum = store[j].getRandom();
+//     store[j].getCookiesPerHr(randomNum);
+//     store[j].addToTotal(i);
+//     store[j].renderData(hour[i], i);
+//   }
+// }
