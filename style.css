@@ -5,13 +5,18 @@ h1 {
   font-size: 1.2em;
 }
 
+img {
+  padding: 2em;
+  margin: .5em 28em auto;
+}
+
 .main {
   background-color: #FFE4DA;
 }
 
 #page_title {
   color: black;
-  align-content: center;
+  text-align: center;
   font-family: 'Georgia' serif;
   font-size: 2em;
 }
@@ -25,6 +30,26 @@ table {
   border: 5px solid #702000;
   background-color: #D6BBB1;
   padding: 5px;
+  width: '400';
+  margin:1em auto;
+}
+
+#table_title {
+  text-align: center;
+}
+
+#totals {
+  color: black;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+th {
+  border-bottom: 2px solid #702000
+}
+
+tr.even {
+  background-color: #FFE4DA;
 }
 
 ul {
