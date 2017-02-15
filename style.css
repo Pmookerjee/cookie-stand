@@ -21,6 +21,42 @@ body {
   align-content: left;
 }
 
+#form {
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+
+}
+
+.location_form {
+  padding: .5em .5em .5em 0;
+}
+
+fieldset {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #702000;
+}
+
+legend {
+  background-color: #D6BBB1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 1px solid #702000;
+}
+
+input#submit {
+  border-radius: 10px;
+  text-shadow: 0px 1px 1px #ffffff;
+  border: 2px solid #702000;
+}
+
+input#submit:hover {
+  color: #FFE4DA;
+  background-color: #702000;
+  cursor: pointer hand;
+}
+
 table {
   border: 5px solid #702000;
   background-color: #D6BBB1;
