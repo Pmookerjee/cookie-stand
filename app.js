@@ -1,305 +1,112 @@
+var headers = ['      ','10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
+//Totals holds all the cookiesPerHr arrays for every store
+var totals = [];
 
+//Initialize the Location objects...
+var PikePlace = new Location('Pike Place', 17, 88, 5.2);
+var SeaTac = new Location('SeaTac Airport', 6, 24, 1.2);
+var Southcenter = new Location('Southcenter', 11, 38, 1.9);
+var BellevueSquare = new Location('Bellevue Square', 20, 48, 3.3);
+var Alki = new Location('Alki', 3, 24, 2.6);
 
+//Store the objects in an array
+var store = [PikePlace, SeaTac, Southcenter, BellevueSquare, Alki];
 
-var PikePlace = {
-  min: 17,
-  max: 88,
-  avg: 5.2,
-  cookiesPerHr:[],
-  totalCookies: 0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max - min) + min);
-  },
-  getCookiesPerHr: function(num) {
+//Run all the things...
+(function runTheApp() {
+
+  //First draw the table header once
+  renderTableHeader(headers);
+
+  //Iterate though all the stores, get the total cookies per hour
+  for(var j=0; j<store.length; j++){
+    for (var i=0; i<headers.length-1; i++){
+      var randomNum = store[j].getRandom();
+      store[j].getCookiesPerHr(randomNum);
+      store[j].addToTotal(i);
+
+    }
+    //Store the totals for all stores in a 2d array
+    totals[j] = store[j].cookiesPerHr;
+    //Draw the table
+    store[j].renderTableBody();
+  }
+  //Draw the totals per hour
+  renderTableFooter(totals);
+})();
+
+function Location(name, min, max, avg) {
+  this.name = name;
+  this.min = min;
+  this.max = max;
+  this.avg = avg;
+  this.cookiesPerHr = [];
+  this.totalCookies = 0;
+
+  this.getRandom = function(){
+    return Math.round(Math.random() * (this.max - this.min) + this.min);
+  };
+
+  this.getCookiesPerHr = function(num) {
     var cookies = num * this.avg;
     this.cookiesPerHr.push(cookies.toFixed(0));
-    console.log('cookies per hour is ' + this.cookiesPerHr);
-  },
-  renderData: function(hour, index) {
-    var header = document.getElementById('PikePlace');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
+  };
 
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('PikePlace');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
+  this.renderTableBody = function() {
+    //check if location name has already been displayed in table row
+    var tbody = document.getElementById('table_body');
+    var newTr = document.createElement('tr');
+    var newTd = document.createElement('td');
+    var content = document.createTextNode(this.name);
+    newTd.appendChild(content);
+    newTr.appendChild(newTd);
+    tbody.appendChild(newTr);
+    for(var i=0; i<this.cookiesPerHr.length; i++){
+      var newTd = document.createElement('td');
+      var cookieData = document.createTextNode(this.cookiesPerHr[i]);
+      newTd.appendChild(cookieData);
+      newTr.appendChild(newTd);
+      tbody.appendChild(newTr);
     }
-  },
-  addToTotal(index){
+  };
+
+  this.addToTotal = function(index){
     this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-var SeaTac = {
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  cookiesPerHr:[],
-  totalCookies:0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max-min) + min);
-  },
-  getCookiesPerHr: function(num) {
-    var cookies = num * this.avg;
-    this.cookiesPerHr.push(cookies.toFixed(0));
-  },
-  renderData: function(hour, index){
-    var header = document.getElementById('SeaTac');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
-
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('SeaTac');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
-    }
-  },
-  addToTotal: function(index){
-    this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-var SeaTac = {
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  cookiesPerHr:[],
-  totalCookies:0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max-min) + min);
-  },
-  getCookiesPerHr: function(num) {
-    var cookies = num * this.avg;
-    this.cookiesPerHr.push(cookies.toFixed(0));
-  },
-  renderData: function(hour, index){
-    var header = document.getElementById('SeaTac');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
-
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('SeaTac');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
-    }
-  },
-  addToTotal: function(index){
-    this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-var SouthCenter = {
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  cookiesPerHr:[],
-  totalCookies:0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max-min) + min);
-  },
-  getCookiesPerHr: function(num) {
-    var cookies = num * this.avg;
-    this.cookiesPerHr.push(cookies.toFixed(0));
-  },
-  renderData: function(hour, index){
-    var header = document.getElementById('SouthCenter');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
-
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('SouthCenter');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
-    }
-  },
-  addToTotal: function(index){
-    this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-var BellevueSquare = {
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  cookiesPerHr:[],
-  totalCookies:0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max-min) + min);
-  },
-  getCookiesPerHr: function(num) {
-    var cookies = num * this.avg;
-    this.cookiesPerHr.push(cookies.toFixed(0));
-  },
-  renderData: function(hour, index){
-    var header = document.getElementById('BellevueSquare');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
-
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('BellevueSquare');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
-    }
-  },
-  addToTotal: function(index){
-    this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-var Alki = {
-  min: 6,
-  max: 24,
-  avg: 1.2,
-  cookiesPerHr:[],
-  totalCookies:0,
-  getRandom: function(min, max){
-    min = this.min;
-    max = this.max;
-    return Math.round(Math.random() * (max-min) + min);
-  },
-  getCookiesPerHr: function(num) {
-    var cookies = num * this.avg;
-    this.cookiesPerHr.push(cookies.toFixed(0));
-  },
-  renderData: function(hour, index){
-    var header = document.getElementById('Alki');
-    var newUl = document.createElement('ul');
-    var newLi = document.createElement('li');
-    var content = hour + ': ' + this.cookiesPerHr[index] + ' cookies';
-    var newLiText = document.createTextNode(content);
-    newLi.appendChild(newLiText);
-    newUl.appendChild(newLi);
-    header.appendChild(newUl);
-
-    //If we have just computed our last hour, render the total number of cookies
-    if(index ===lastHour) {
-      var total = 'Total: ' + this.totalCookies + ' cookies';
-      var header = document.getElementById('Alki');
-      var newUl = document.createElement('ul');
-      var newLi = document.createElement('li');
-      var newLiText = document.createTextNode(total);
-      newLi.appendChild(newLiText);
-      newLi.appendChild(newLiText);
-      newUl.appendChild(newLi);
-      header.appendChild(newUl);
-    }
-  },
-  addToTotal: function(index){
-    this.totalCookies += +this.cookiesPerHr[index];
-  }
-};
-
-
-
-//Put an array in here and another loop for the location names....
-//also, add beginning and endvalue variables
-//var locationName = ['PikePlace', 'SeaTac', 'SouthCenter', 'BellevueSquare', 'Alki'];
-
-var hour = ['10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-var firstHour = 0
-var lastHour = 7;
-for(var i = firstHour; i <= lastHour; i++){
-  var randomNum = PikePlace.getRandom();
-  PikePlace.getCookiesPerHr(randomNum);
-  PikePlace.addToTotal(i);
-  PikePlace.renderData(hour[i], i);
+  };
 }
 
-for(var i = firstHour; i <= lastHour; i++){
-  var randomNum = SeaTac.getRandom();
-  SeaTac.getCookiesPerHr(randomNum);
-  SeaTac.addToTotal(i);
-  SeaTac.renderData(hour[i], i);
-}
+function renderTableHeader(headerNames){
+  var header = document.getElementById('table_header');
+  for (var i=0; i<headerNames.length; i++){
+    var newTh = document.createElement('th');
+    var headerName = document.createTextNode(headerNames[i]);
+    newTh.appendChild(headerName);
+    header.appendChild(newTh);
+  }
+};
 
-for(var i = firstHour; i <=lastHour; i++){
-  var randomNum = SouthCenter.getRandom();
-  SouthCenter.getCookiesPerHr(randomNum);
-  SouthCenter.addToTotal(i);
-  SouthCenter.renderData(hour[i], i);
-}
+function renderTableFooter(t) {
+  var tbody = document.getElementById('table_body');
+  var newTr = document.createElement('tr');
+  var newTd = document.createElement('td');
+  newTd.setAttribute('id', 'totals');
+  var content = document.createTextNode('Totals');
+  newTd.appendChild(content);
+  newTr.appendChild(newTd);
+  tbody.appendChild(newTr);
 
-for(var i = firstHour; i <= lastHour; i++){
-  var randomNum = BellevueSquare.getRandom();
-  BellevueSquare.getCookiesPerHr(randomNum);
-  BellevueSquare.addToTotal(i);
-  BellevueSquare.renderData(hour[i], i);
-}
+  //Go by column to get the cookie totals for each hour
+  for(var i=0; i<headers.length-1; i++){
+    var total = 0;
+    for(var j=0; j<store.length; j++){
+      total += +t[j][i];
+    }
 
-for(var i = firstHour; i <= lastHour; i++){
-  var randomNum = Alki.getRandom();
-  Alki.getCookiesPerHr(randomNum);
-  Alki.addToTotal(i);
-  Alki.renderData(hour[i], i);
+    var newTd = document.createElement('td');
+    newTd.setAttribute('id', 'totals');
+    var cookieData = document.createTextNode(total);
+    newTd.appendChild(cookieData);
+    newTr.appendChild(newTd);
+    tbody.appendChild(newTr);
+  }
 }

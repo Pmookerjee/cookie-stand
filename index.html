@@ -4,13 +4,20 @@
   <link rel='stylesheet' href='style.css'>
 </head>
 <body class = 'main'>
-  <h1 id='PikePlace'>Pike Place</h1>
-  <h1 id='SeaTac'>SeaTac Airport</h1>
-  <h1 id='SouthCenter'>South Center</h1>
-  <h1 id='BellevueSquare'>Bellevue Square</h1>
-  <h1 id='Alki'>Alki</h1>
+  <header>
+    <h1 id='page_title'>Pat's Salmon Cookie Stores</h1>
+    <img src='./salmon.png' width='320' height='100'>
+  </header>
+  <h3 id='table_title'>Cookies Needed By Location Each Day</h3>
+  <table cellpadding='10' cellspacing='5'>
+    <thead>
+      <tr id= 'table_header'></tr>
+      <tr width = '15'></tr>
+    </thead>
+    <tbody id='table_body'></tbody>
+    <tfoot id='table_footer'></tfoot>
+  </table>
   <script type='text/javascript' src='app.js'></script>
-  <footer>
-  </footer>
+  <footer id= 'footer'></footer>
 </body>
 </html>
