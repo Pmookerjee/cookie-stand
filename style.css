@@ -22,14 +22,32 @@ body {
 }
 
 #form {
-  width: 60%;
+  width: 55%;
   margin: 0 auto;
   display: block;
 
 }
 
+label {
+  margin-right: 2px;
+}
+
 .location_form {
   padding: .5em .5em .5em 0;
+}
+
+.location_box {
+  border-radius: 10px;
+  width: 300px;
+}
+
+.max {
+  padding-left: 20px;
+}
+
+.input_box {
+  border-radius: 10px;
+  width: 50px;
 }
 
 fieldset {
@@ -47,8 +65,12 @@ legend {
 
 input#submit {
   border-radius: 10px;
+  width: 200px;
+  height: 30px;
+  font-size: .8em;
   text-shadow: 0px 1px 1px #ffffff;
   border: 2px solid #702000;
+  float: right;
 }
 
 input#submit:hover {
@@ -58,10 +80,10 @@ input#submit:hover {
 }
 
 table {
-  border: 5px solid #702000;
+  border: 4px solid #702000;
   background-color: #D6BBB1;
   padding: 5px;
-  width: '400';
+  width: 55%;
   margin:1em auto;
 }
 

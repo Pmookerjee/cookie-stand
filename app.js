@@ -1,6 +1,7 @@
 var headers = ['      ','10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
 //Totals holds all the cookiesPerHr arrays for every store
 var totals = [];
+var store = [];
 
 //Initialize the Location objects...
 var PikePlace = new Location('Pike Place', 17, 88, 5.2);
@@ -8,9 +9,9 @@ var SeaTac = new Location('SeaTac Airport', 6, 24, 1.2);
 var Southcenter = new Location('Southcenter', 11, 38, 1.9);
 var BellevueSquare = new Location('Bellevue Square', 20, 48, 3.3);
 var Alki = new Location('Alki', 3, 24, 2.6);
+var row = 0;
 
-//Store the objects in an array
-var store = [PikePlace, SeaTac, Southcenter, BellevueSquare, Alki];
+
 
 //Run all the things...
 (function runTheApp() {
@@ -24,16 +25,18 @@ var store = [PikePlace, SeaTac, Southcenter, BellevueSquare, Alki];
       var randomNum = store[j].getRandom();
       store[j].getCookiesPerHr(randomNum);
       store[j].addToTotal(i);
-
     }
     //Store the totals for all stores in a 2d array
     totals[j] = store[j].cookiesPerHr;
     //Draw the table
-    store[j].renderTableBody();
+    store[j].renderTableRow();
   }
-  //Draw the totals per hour
+  row = j-1;
   renderTableFooter(totals);
 })();
+
+form.addEventListener('submit', handleFormSubmit);
+
 
 function Location(name, min, max, avg) {
   this.name = name;
@@ -42,9 +45,11 @@ function Location(name, min, max, avg) {
   this.avg = avg;
   this.cookiesPerHr = [];
   this.totalCookies = 0;
+  store.push(this);
 
   this.getRandom = function(){
-    return Math.round(Math.random() * (this.max - this.min) + this.min);
+    var beans = Math.floor(Math.random() * (this.max - this.min)) + this.min;
+    return beans;
   };
 
   this.getCookiesPerHr = function(num) {
@@ -52,7 +57,7 @@ function Location(name, min, max, avg) {
     this.cookiesPerHr.push(cookies.toFixed(0));
   };
 
-  this.renderTableBody = function() {
+  this.renderTableRow = function() {
     //check if location name has already been displayed in table row
     var tbody = document.getElementById('table_body');
     var newTr = document.createElement('tr');
@@ -86,8 +91,14 @@ function renderTableHeader(headerNames){
 };
 
 function renderTableFooter(t) {
-  var tbody = document.getElementById('table_body');
+  if(document.getElementById('totals_row')) {
+    var removeTr = document.getElementById('totals_row');
+    var containerTr = removeTr.parentNode;
+    containerTr.removeChild(removeTr);
+  }
+  var tbody = document.getElementById('table_footer');
   var newTr = document.createElement('tr');
+  newTr.setAttribute('id', 'totals_row')
   var newTd = document.createElement('td');
   newTd.setAttribute('id', 'totals');
   var content = document.createTextNode('Totals');
@@ -109,4 +120,33 @@ function renderTableFooter(t) {
     newTr.appendChild(newTd);
     tbody.appendChild(newTr);
   }
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  console.log(event);
+
+  var location = event.target.location.value;
+  var min = parseInt(event.target.min.value);
+  var max = parseInt(event.target.max.value);
+  var avg = parseFloat(event.target.avg.value);
+  row++;
+
+  var newLocation = new Location(location, min, max, avg);
+
+  for (var i=0; i<headers.length-1; i++){
+    randomNum = newLocation.getRandom();
+    newLocation.getCookiesPerHr(randomNum);
+    newLocation.addToTotal(i);
+  }
+  totals[row] = newLocation.cookiesPerHr;
+  newLocation.renderTableRow();
+
+  //Draw the totals per hour
+  renderTableFooter(totals);
+
+  event.target.location.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.avg.value = null;
 }
