@@ -16,16 +16,97 @@ img {
   font-size: 2em;
 }
 
+.top_nav {
+ list-style: none;
+ display: flex;
+ justify-content: space-between;
+ margin: 0 2em;
+ font-family: 'Georgia' serif;
+ font-size: 2em;
+}
+
+.nav {
+  border: 2px solid;
+  background-color: #D6BBB1;
+}
 
 body {
   align-content: left;
 }
 
+#form {
+  width: 55%;
+  margin: 0 auto;
+  display: block;
+
+}
+
+label {
+  margin-right: 2px;
+
+}
+
+.location_form {
+  padding: .5em .5em .5em 0;
+}
+
+.location_box {
+  border-radius: 10px;
+  width: 250px;
+  padding-left: 10px;
+}
+
+.avg_and_submit {
+  width: 100%;
+  padding: .5em .5em .5em 0;
+  display: inline-block;
+}
+
+.max {
+  padding-left: 20px;
+}
+
+.input_box {
+  border-radius: 10px;
+  width: 50px;
+  padding-left: 10px;
+}
+
+fieldset {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #702000;
+}
+
+
+legend {
+  background-color: #D6BBB1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 1px solid #702000;
+}
+
+input#submit {
+  border-radius: 10px;
+  width: 200px;
+  height: 30px;
+  font-size: .8em;
+  text-shadow: 0px 1px 1px #ffffff;
+  border: 2px solid #702000;
+  float: right;
+}
+
+input#submit:hover {
+  color: #FFE4DA;
+  background-color: #702000;
+  cursor: pointer hand;
+}
+
 table {
-  border: 5px solid #702000;
+  border: 4px solid #702000;
   background-color: #D6BBB1;
   padding: 5px;
-  width: '400';
+  width: 55%;
   margin:1em auto;
 }
 
