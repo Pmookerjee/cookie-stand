@@ -105,6 +105,14 @@ function renderTableFooter(t) {
     tbody.appendChild(newTr);
   }
 }
+function locationExists(location){
+    for (var i = 0; i<store.length; i++){
+      if (store[i].name===location){
+        return store[i];
+      }
+    }
+    return false;
+}
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -114,20 +122,40 @@ function handleFormSubmit(event) {
   var min = parseInt(event.target.min.value);
   var max = parseInt(event.target.max.value);
   var avg = parseFloat(event.target.avg.value);
-  row++;
+  debugger;
 
-  var newLocation = new Location(location, min, max, avg);
+  var storeLocation = locationExists(location);
 
-  //Do the calculations on the new user inputed data
-  for (var i=0; i<headers.length-1; i++){
-    randomNum = newLocation.getRandom();
-    newLocation.getCookiesPerHr(randomNum);
-    newLocation.addToTotal(i);
-  }
-  //Add new row data to the totals[]
-  totals[row] = newLocation.cookiesPerHr;
-  //Draw the new row
-  newLocation.renderTableRow();
+  if (storeLocation){
+
+    var index = store.indexOf(storeLocation);
+    document.getElementById('table_body').deleteRow(index);
+    store[index].min = min;
+    store[index].max = max;
+    store[index].avg = avg;
+    for (var i=0; i<headers.length-1; i++){
+      randomNum = store[index].getRandom();
+      store[index].getCookiesPerHr(randomNum);
+      store[index].addToTotal(i);
+    }
+  totals[index] = store[index].cookiesPerHr;
+      store[index].renderTableRow();
+} else{
+    row++;
+
+    var newLocation = new Location(location, min, max, avg);
+
+    //Do the calculations on the new user inputed data
+    for (var i=0; i<headers.length-1; i++){
+      randomNum = newLocation.getRandom();
+      newLocation.getCookiesPerHr(randomNum);
+      newLocation.addToTotal(i);
+    }
+    //Add new row data to the totals[]
+    totals[row] = newLocation.cookiesPerHr;
+    //Draw the new row
+    newLocation.renderTableRow();
+}
   //Draw the new totals per time of day
   renderTableFooter(totals);
 
