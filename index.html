@@ -5,14 +5,16 @@
 </head>
 <body class = 'main'>
   <header>
-    <!-- <nav>
+    <nav>
+      <div class = 'nav'>
       <ul class='top_nav'>
-        <li></li>
-        <li></li>
-        <li></li>
-
+        <li>About</li>
+        <li>Locations</li>
+        <li>Merch</li>
+        <li>Events</li>
       </ul>
-    </nav> -->
+    </div>
+    </nav>
     <h1 id='page_title'>Pat's Salmon Cookie Stores</h1>
     <img src='./salmon.png' width='320' height='100'>
   </header>
@@ -32,11 +34,11 @@
         <input type="number" name="max" min="1" class='input_box' required>
     </fieldset>
     <fieldset>
-        <div class = 'location_form'>
+        <div class = 'avg_and_submit'>
         <label for="avg">Avg # Cookies Per Customer</label>
         <input type="number" name="avg" min="1" step="any" class='input_box' required>
         <input type="submit" value="Generate Cookies Per Hour" id='submit'>
-      </div>
+        </div>
     </fieldset>
 
   </form>
