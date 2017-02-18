@@ -24,10 +24,26 @@ img {
  font-family: 'Georgia' serif;
  font-size: 2em;
 }
+/*
+li {
+  padding-left: 3em;
+}*/
 
 .nav {
+  height: 2em;
+  width: 100%;
   border: 2px solid;
   background-color: #D6BBB1;
+}
+
+.top_nav a:hover {
+  color: #FFE4DA;
+  background-color: #702000;
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
