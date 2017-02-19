@@ -52,10 +52,8 @@ li {
   color: #D6BBB1;
   font-style: italic;
 }
-
-a:active {
+li.selected a {
   color: #D6BBB1;
-  background-color: black;
 }
 
 a {
@@ -284,8 +282,4 @@ figcaption {
   color: #702000;
   text-align: center;
   margin-top: 5px;
-}
-
-.merch {
-  border: 6px black #702000;
 }
