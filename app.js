@@ -122,24 +122,25 @@ function handleFormSubmit(event) {
   var min = parseInt(event.target.min.value);
   var max = parseInt(event.target.max.value);
   var avg = parseFloat(event.target.avg.value);
-  debugger;
 
   var storeLocation = locationExists(location);
 
   if (storeLocation){
 
     var index = store.indexOf(storeLocation);
+    totals.splice(index, 1);
+    store.splice(index, 1);
     document.getElementById('table_body').deleteRow(index);
-    store[index].min = min;
-    store[index].max = max;
-    store[index].avg = avg;
+    var newLocation = new Location(location, min, max, avg);
+
     for (var i=0; i<headers.length-1; i++){
-      randomNum = store[index].getRandom();
-      store[index].getCookiesPerHr(randomNum);
-      store[index].addToTotal(i);
+      randomNum = newLocation.getRandom();
+      newLocation.getCookiesPerHr(randomNum);
+      newLocation.addToTotal(i);
     }
-  totals[index] = store[index].cookiesPerHr;
-      store[index].renderTableRow();
+    index = store.indexOf(newLocation);
+    totals[index] = newLocation.cookiesPerHr;
+      newLocation.renderTableRow();
 } else{
     row++;
 
