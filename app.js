@@ -106,16 +106,26 @@ function renderTableFooter(t) {
   }
 }
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-  console.log(event);
+function checkIfLocationExists(location){
+  for (var i = 0; i<store.length; i++){
+    if (store[i].name===location){
+      return store[i];
+    }
+  }
+  //return false if location does not already exist
+  return false;
+}
 
-  var location = event.target.location.value;
-  var min = parseInt(event.target.min.value);
-  var max = parseInt(event.target.max.value);
-  var avg = parseFloat(event.target.avg.value);
-  row++;
+function deleteLocation(location) {
+  var index = store.indexOf(location);
+  //Remove the object from the arrays
+  totals.splice(index, 1);
+  store.splice(index, 1);
+  //Delete the row from the table
+  document.getElementById('table_body').deleteRow(index);
+}
 
+function createNewLocation(location, min, max, avg){
   var newLocation = new Location(location, min, max, avg);
 
   //Do the calculations on the new user inputed data
@@ -124,10 +134,35 @@ function handleFormSubmit(event) {
     newLocation.getCookiesPerHr(randomNum);
     newLocation.addToTotal(i);
   }
-  //Add new row data to the totals[]
-  totals[row] = newLocation.cookiesPerHr;
+  return newLocation;
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  console.log(event);
+
+  var location = event.target.location.value;
+  var min = parseInt(event.target.min.value);
+  var max = parseInt(event.target.max.value);
+  var avg = parseFloat(event.target.avg.value);
+
+  //Check if inputed location already exists
+  var storeLocation = checkIfLocationExists(location);
+
+  if (storeLocation){
+    deleteLocation(storeLocation);
+    var newLocation = createNewLocation(location, min, max, avg);
+    index = store.indexOf(newLocation);
+    totals[index] = newLocation.cookiesPerHr;
+  } else{
+    row++;
+    var newLocation = createNewLocation(location, min, max, avg);
+    //Add new row data to the totals[]
+    totals[row] = newLocation.cookiesPerHr;
+  }
   //Draw the new row
   newLocation.renderTableRow();
+
   //Draw the new totals per time of day
   renderTableFooter(totals);
 
