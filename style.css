@@ -24,9 +24,27 @@ img {
  font-family: 'Georgia' serif;
  font-size: 2em;
 }
+/*
+li {
+  padding-left: 3em;
+}*/
 
 .nav {
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
   background-color: #D6BBB1;
+}
+
+.top_nav a:hover {
+  color: #FFE4DA;
+  background-color: #702000;
+  font-style: italic;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
