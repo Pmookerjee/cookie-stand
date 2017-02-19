@@ -105,13 +105,36 @@ function renderTableFooter(t) {
     tbody.appendChild(newTr);
   }
 }
-function locationExists(location){
-    for (var i = 0; i<store.length; i++){
-      if (store[i].name===location){
-        return store[i];
-      }
+
+function checkIfLocationExists(location){
+  for (var i = 0; i<store.length; i++){
+    if (store[i].name===location){
+      return store[i];
     }
-    return false;
+  }
+  //return false if location does not already exist
+  return false;
+}
+
+function deleteLocation(location) {
+  var index = store.indexOf(location);
+  //Remove the object from the arrays
+  totals.splice(index, 1);
+  store.splice(index, 1);
+  //Delete the row from the table
+  document.getElementById('table_body').deleteRow(index);
+}
+
+function createNewLocation(location, min, max, avg){
+  var newLocation = new Location(location, min, max, avg);
+
+  //Do the calculations on the new user inputed data
+  for (var i=0; i<headers.length-1; i++){
+    randomNum = newLocation.getRandom();
+    newLocation.getCookiesPerHr(randomNum);
+    newLocation.addToTotal(i);
+  }
+  return newLocation;
 }
 
 function handleFormSubmit(event) {
@@ -123,40 +146,23 @@ function handleFormSubmit(event) {
   var max = parseInt(event.target.max.value);
   var avg = parseFloat(event.target.avg.value);
 
-  var storeLocation = locationExists(location);
+  //Check if inputed location already exists
+  var storeLocation = checkIfLocationExists(location);
 
   if (storeLocation){
-
-    var index = store.indexOf(storeLocation);
-    totals.splice(index, 1);
-    store.splice(index, 1);
-    document.getElementById('table_body').deleteRow(index);
-    var newLocation = new Location(location, min, max, avg);
-
-    for (var i=0; i<headers.length-1; i++){
-      randomNum = newLocation.getRandom();
-      newLocation.getCookiesPerHr(randomNum);
-      newLocation.addToTotal(i);
-    }
+    deleteLocation(storeLocation);
+    var newLocation = createNewLocation(location, min, max, avg);
     index = store.indexOf(newLocation);
     totals[index] = newLocation.cookiesPerHr;
-      newLocation.renderTableRow();
-} else{
+  } else{
     row++;
-
-    var newLocation = new Location(location, min, max, avg);
-
-    //Do the calculations on the new user inputed data
-    for (var i=0; i<headers.length-1; i++){
-      randomNum = newLocation.getRandom();
-      newLocation.getCookiesPerHr(randomNum);
-      newLocation.addToTotal(i);
-    }
+    var newLocation = createNewLocation(location, min, max, avg);
     //Add new row data to the totals[]
     totals[row] = newLocation.cookiesPerHr;
-    //Draw the new row
-    newLocation.renderTableRow();
-}
+  }
+  //Draw the new row
+  newLocation.renderTableRow();
+
   //Draw the new totals per time of day
   renderTableFooter(totals);
 
