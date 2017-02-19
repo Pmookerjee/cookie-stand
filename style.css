@@ -17,15 +17,15 @@ img {
 }
 
 .top_nav {
- list-style: none;
- display: flex;
- justify-content: space-between;
- margin: 0 2em;
- font-family: 'Georgia' serif;
- font-size: 2em;
- align-items: center;
- color: #CD724D;
- padding-top: 7px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2em;
+  font-family: 'Georgia' serif;
+  font-size: 2em;
+  align-items: center;
+  color: #CD724D;
+  padding-top: 7px;
 }
 
 .top_nav:active {
@@ -260,13 +260,32 @@ span {
 }
 
 #us {
- font-family: 'Georgia' serif;
- font-size: 2em;
- color: #702000;
- text-align: center;
+  font-family: 'Georgia' serif;
+  font-size: 2em;
+  color: #702000;
+  text-align: center;
 }
 
 #merch {
   display: flex;
   justify-content: space-between;
+}
+
+
+select {
+  width: 150px;
+  height: 25px;
+  margin: 5px 10px;
+}
+
+figcaption {
+  font-family: 'Georgia' sans-serif;
+  font-size: 1.2em;
+  color: #702000;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.merch {
+  border: 6px black #702000;
 }
