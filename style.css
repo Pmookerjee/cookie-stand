@@ -23,24 +23,39 @@ img {
  margin: 0 2em;
  font-family: 'Georgia' serif;
  font-size: 2em;
+ align-items: center;
+ color: #CD724D;
+ padding-top: 7px;
 }
-/*
+
+.top_nav:active {
+  color: #D6BBB1;
+}
+
 li {
-  padding-left: 3em;
-}*/
+  color: black;
+}
 
 .nav {
-<<<<<<< HEAD
+  height: 3em;
+  width: 100%;
+  background-color: #702000;
+}
 
-=======
->>>>>>> master
-  background-color: #D6BBB1;
+.top_nav a {
+  color: black;
+  font-family: 'Georgia' serif;
+  font-size: 1em;
 }
 
 .top_nav a:hover {
-  color: #FFE4DA;
-  background-color: #702000;
+  color: #D6BBB1;
   font-style: italic;
+}
+
+a:active {
+  color: #D6BBB1;
+  background-color: black;
 }
 
 a {
