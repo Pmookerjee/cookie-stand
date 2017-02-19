@@ -251,3 +251,22 @@ span {
 .primary-0 { background-color: #CD724D }
 .primary-3 { background-color: #553D33 }
 .primary-4 { background-color: #702000 }
+
+/*about.html*/
+
+#about {
+  width: 852px;
+  margin: 0 auto;
+}
+
+#us {
+ font-family: 'Georgia' serif;
+ font-size: 2em;
+ color: #702000;
+ text-align: center;
+}
+
+#merch {
+  display: flex;
+  justify-content: space-between;
+}
