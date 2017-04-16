@@ -1,9 +1,51 @@
 <html>
 <head>
-  <title>About</title>
+  <title>Merch</title>
   <link rel='stylesheet' href='style.css'>
 </head>
-<body>
+<body class = 'main'>
+  <header>
+    <nav>
+      <div class = 'nav'>
+        <ul class='top_nav'>
+          <li><a href='index.html'>Home</a></li>
+          <li><a href='about.html'>About</a></li>
+          <li><a href='locations.html'>Locations</a></li>
+          <li><a href='merch.html'>Merch</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1 id='page_title'>Merch</h1>
+  </header>
+  <div id='merch'>
+    <figure>
+    <img src='shirt.jpg' border='2px' style="border-color: #702000">
+    <figcaption>Salmon run t-shirt one-size fits all</figcaption>
+  </figure>
+  <figure>
+    <img src='fishies2.jpg' width='282' height = '250' border='2px' style="border-color: #702000">
+    <figcaption>Happy Fishes Sticker: 3"x 3"</figcaption>
+  </figure>
+      <figure>
+    <img src='salmon_mug.jpg' width='296' height = '298' border='2px' style="border-color: #702000">
+    <figcaption>Salmon Art Mug: 16oz</figcaption>
+  </figure>
+  </div>
+  <br>
+  <br>
+  <form id='form'>
+    <fieldset>
+      <legend>Order an Item!</legend>
+      <select name="product">
+      <div class = 'product_dropdown'>
+        <option value='shirt'>Salmon Run T-shirt</option>
+        <option value='sticker'>Happy Fishes Sticker</option>
+        <option value='mug'>Salmon Art Mug</option>
+      </select>
+          <input type="submit" value="Add to Cart" id='submit'>
+      </div>
+      </fieldset>
+    </form>
 </body>
 <footer>
 </footer>
